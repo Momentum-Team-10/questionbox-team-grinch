@@ -15,12 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from questionbox import views as api_views
 
+
+
+router = DefaultRouter(trailing_slash=False)
+router.register("questions", api_views.QuestionViewSet, basename="questions")
 urlpatterns = [
+    path("api/", include(router.urls)),
     path('admin/', admin.site.urls),
     #rest framework
     path('api-auth/', include('rest_framework.urls')),
     #djoser
     path(r'^auth/', include('djoser.urls')),
     path(r'^auth/', include('djoser.urls.authtoken')),
+    # api paths
 ]
