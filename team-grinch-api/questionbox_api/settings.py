@@ -142,6 +142,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Django Rest Framework
 # https://www.django-rest-framework.org/
 
+import django_on_heroku
+
+django_on_heroku.settings(locals())
+del DATABASES["default"]["OPTIONS"]["sslmode"]
+
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
