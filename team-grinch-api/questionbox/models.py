@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import datetime
 
 class User(AbstractUser):
     def __repr__ (self):
@@ -17,11 +18,14 @@ class Tag(models.Model):
 
 class Question(models.Model):
     title = models.CharField(max_length=150)
-    question = models.TextField()
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="questions")
+    # list of strings
     favorited_by = models.ManyToManyField(
         User, related_name="favorite_questions", blank=True
     )
+    # list of strings
     tags = models.ManyToManyField(
         to=Tag, related_name="questions", blank=True
     )
