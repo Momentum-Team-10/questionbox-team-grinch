@@ -37,7 +37,7 @@ urlpatterns = [
     path("api/questions/<int:questions_pk>/answers",
                 api_views.AnswerViewSet.as_view({
                     'get': 'list',
-                    'put': 'update',
+                    'post': 'create',
                 }),
                 name="api_question_answers"
     ),
