@@ -22,6 +22,10 @@ from questionbox import views as api_views
 
 router = DefaultRouter(trailing_slash=False)
 router.register("questions", api_views.QuestionViewSet, basename="questions")
+router.register("questions/<int:question_pk>/answers",
+                api_views.AnswerViewSet,
+                basename="question_answers"
+)
 urlpatterns = [
     path("api/", include(router.urls)),
     path('admin/', admin.site.urls),

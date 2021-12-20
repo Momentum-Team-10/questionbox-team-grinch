@@ -8,6 +8,15 @@ class QuestionSerializer(serializers.ModelSerializer):
             'pk', 'title', 'body', 'author', 'tags', 'favorited_by', 
         )
 
+class AnswerSerializer(serializers.ModelSerializer):
+    author = serializers.SlugRelatedField(read_only=True, slug_field="username")
+    
+    class Meta:
+        model = Answer
+        fields = [
+            'pk', 'answer', 'author', 'accepted'
+        ]
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
