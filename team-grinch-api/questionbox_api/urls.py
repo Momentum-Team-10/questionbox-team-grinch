@@ -38,9 +38,16 @@ urlpatterns = [
                 api_views.AnswerViewSet.as_view({
                     'get': 'list',
                     'put': 'update',
+                }),
+                name="api_question_answers"
+    ),
+    path("api/questions/<int:questions_pk>/answers/<int:pk>",
+                api_views.AnswerViewSet.as_view({
+                    'get': 'retrieve',
+                    'put': 'update',
                     'patch': 'partial_update',
                     'delete': 'destroy',
                 }),
-                name="api_question_answers"
+                name="api_question_answers_detail"
     ),
 ]
