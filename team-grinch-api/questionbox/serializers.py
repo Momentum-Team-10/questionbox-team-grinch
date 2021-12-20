@@ -9,12 +9,10 @@ class QuestionSerializer(serializers.ModelSerializer):
         )
 
 class AnswerSerializer(serializers.ModelSerializer):
-    author = serializers.SlugRelatedField(read_only=True, slug_field="username")
-    
     class Meta:
         model = Answer
         fields = [
-            'pk', 'answer', 'author', 'accepted'
+            'pk', 'question', 'answer', 'author', 'accepted'
         ]
 
 class UserSerializer(serializers.ModelSerializer):

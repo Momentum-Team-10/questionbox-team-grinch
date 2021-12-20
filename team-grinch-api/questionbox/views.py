@@ -24,3 +24,5 @@ class AnswerViewSet(ModelViewSet):
     serializer_class = AnswerSerializer
     permission_classes = []
 
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
