@@ -20,7 +20,7 @@ class QuestionViewSet(ModelViewSet):
     #     serializer.save(author=self.request.user.pk)
 
 class AnswerViewSet(ModelViewSet):
-    queryset = Answer.objects.all().order_by("accepted")
+    queryset = Answer.objects.all().order_by("accepted").reverse()
     serializer_class = AnswerSerializer
     permission_classes = []
 

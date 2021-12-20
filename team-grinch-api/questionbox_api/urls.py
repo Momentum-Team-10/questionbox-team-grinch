@@ -22,10 +22,7 @@ from questionbox import views as api_views
 
 router = DefaultRouter(trailing_slash=False)
 router.register("questions", api_views.QuestionViewSet, basename="questions")
-router.register("questions/<int:questions_pk>/answers",
-                api_views.AnswerViewSet,
-                basename="question_answers"
-)
+
 urlpatterns = [
     path("api/", include(router.urls)),
     path('admin/', admin.site.urls),
@@ -35,4 +32,15 @@ urlpatterns = [
     # path(r'^auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     # api paths
+
+    # answer paths
+    path("api/questions/<int:questions_pk>/answers",
+                api_views.AnswerViewSet.as_view({
+                    'get': 'list',
+                    'put': 'update',
+                    'patch': 'partial_update',
+                    'delete': 'destroy',
+                }),
+                name="api_question_answers"
+    ),
 ]
