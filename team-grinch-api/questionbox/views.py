@@ -29,6 +29,7 @@ class AnswerViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         question = Question.objects.get(pk=self.kwargs['questions_pk'])
+        # question = get_object_or_404(Question, pk=self.kwargs['questions_pk'])
         serializer.save(author=self.request.user, question=question)
 
     def get_queryset(self):
