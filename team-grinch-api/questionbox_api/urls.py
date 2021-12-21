@@ -29,7 +29,7 @@ urlpatterns = [
     #rest framework
     path('api-auth/', include('rest_framework.urls')),
     #djoser
-    # path(r'^auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     # api paths
 
