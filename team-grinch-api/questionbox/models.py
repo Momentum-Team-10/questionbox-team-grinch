@@ -39,7 +39,3 @@ class Answer(models.Model):
     favorited_by = models.ManyToManyField(
         User, related_name="favorite_answers", blank=True
     )
-
-
-
-
