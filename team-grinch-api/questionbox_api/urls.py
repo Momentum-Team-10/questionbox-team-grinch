@@ -50,4 +50,7 @@ urlpatterns = [
                 }),
                 name="api_question_answers_detail"
     ),
+
+    # search path
+    path('api/questions/', api_views.QuestionSearchView.as_view())
 ]
