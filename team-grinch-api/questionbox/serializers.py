@@ -24,3 +24,7 @@ class AnswerSerializer(serializers.ModelSerializer):
             'pk', 'question', 'answer', 'author', 'accepted'
         ]
 
+class QuestionSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = '__all__'

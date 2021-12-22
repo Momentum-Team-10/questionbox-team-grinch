@@ -1,10 +1,12 @@
 from django.db.models import query
 from django.shortcuts import render
+from questionbox.filters import DynamicSearchFilter
 from rest_framework.decorators import permission_classes
-from .serializers import QuestionSerializer, AnswerSerializer
+from .serializers import QuestionSearchSerializer, QuestionSerializer, AnswerSerializer
 from .models import Question, User, Answer
 from rest_framework.generics import ListCreateAPIView, RetrieveDestroyAPIView, CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView  
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import filters
 
 from questionbox import permissions, serializers
 
@@ -39,4 +41,14 @@ class AnswerViewSet(ModelViewSet):
         queryset = question.answers.all()
         return queryset
 
+class QuestionSearchView(ListCreateAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSearchSerializer
 
+    #added to allow search functionality
+
+    # we dont need this with dynamic searching
+    # search_fields = ['title']
+    # filter_backends = (filters.SearchFilter,)
+    
+    filter_backends = (DynamicSearchFilter,)
